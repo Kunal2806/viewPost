@@ -1,4 +1,10 @@
+import Users from "./Users";
+import Data from "./Data/data.json";
+import { useState } from "react";
+
 function Hero() {
+  const [Arrow, setArrow] = useState(false);
+  // const [prev, setprev] = useState(0);
   return (
     <>
       <div className="HeroTitle">
@@ -10,8 +16,27 @@ function Hero() {
       </div>
       <div className="UsersCard">
         <img className="usersImg" src="./image/users.jpg" />
-        <img className="usersArrow" src="./image/usersArrow.png" />
+        <img
+          className="usersArrow"
+          src={Arrow ? "./image/usersDownArrow.png" : "./image/usersArrow.png"}
+          onClick={() => setArrow((pre) => !pre)}
+        />
       </div>
+      {/* {Data.map((_post, index) => {
+        if (prev !== _post.userId) {
+          <div className="UsersDiv">
+            <Users key={index} user_id={_post.userId} />
+          </div>;
+        }
+        setprev(_post.userId);
+      })} */}
+      {Arrow && (
+        <div className="UsersDiv">
+          {Data.map((_post, index) => (
+            <Users key={index} user_id={_post.userId} />
+          ))}
+        </div>
+      )}
     </>
   );
 }
