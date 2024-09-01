@@ -1,6 +1,8 @@
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import Users from "./components/userpage";
 import "./Style.css";
+import { Routes, Route } from "react-router-dom";
 
 function Home() {
   return (
@@ -10,7 +12,10 @@ function Home() {
           <Navbar />
         </header>
         <main>
-          <Hero />
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/user/:userId" element={<Users />} />
+          </Routes>
         </main>
       </div>
     </>

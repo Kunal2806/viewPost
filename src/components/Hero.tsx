@@ -4,7 +4,20 @@ import { useState } from "react";
 
 function Hero() {
   const [Arrow, setArrow] = useState(false);
-  // const [prev, setprev] = useState(0);
+
+  const dataArray = Data;
+  let userIdArray = dataArray.map((data) => data.userId);
+  let set = new Set(userIdArray);
+  const idArray = [...set];
+
+  function userOnClick(e: any) {
+    console.log(e.target);
+  }
+
+  function createHrefLink(id: number) {
+    return `/user/${id}`;
+  }
+
   return (
     <>
       <div className="HeroTitle">
@@ -22,18 +35,15 @@ function Hero() {
           onClick={() => setArrow((pre) => !pre)}
         />
       </div>
-      {/* {Data.map((_post, index) => {
-        if (prev !== _post.userId) {
-          <div className="UsersDiv">
-            <Users key={index} user_id={_post.userId} />
-          </div>;
-        }
-        setprev(_post.userId);
-      })} */}
       {Arrow && (
         <div className="UsersDiv">
-          {Data.map((_post, index) => (
-            <Users key={index} user_id={_post.userId} />
+          {idArray.map((id) => (
+            <Users
+              key={id}
+              user_id={id}
+              customOnClick={userOnClick}
+              href={createHrefLink(id)}
+            />
           ))}
         </div>
       )}
