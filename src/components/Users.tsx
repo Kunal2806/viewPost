@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export interface Props {
   user_id: number;
   customOnClick: any;
@@ -5,10 +7,10 @@ export interface Props {
 }
 function Users(props: Props) {
   return (
-    <a className="user" onClick={props.customOnClick} href={props.href}>
+    <Link className="user" onClick={props.customOnClick} to={props.href}>
       <img src="./image/user.jpg" />
       <p className="usersTest">user_Id = {props.user_id} </p>
-    </a>
+    </Link>
   );
 }
 
