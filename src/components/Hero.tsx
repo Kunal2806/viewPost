@@ -11,7 +11,7 @@ function Hero() {
   const idArray = [...set];
 
   function userOnClick(e: any) {
-    console.log(e.target);
+    e.target;
   }
 
   function createHrefLink(id: number) {

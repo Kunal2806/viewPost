@@ -38,6 +38,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .NavLogoImg {
     width : 80px;
     height: 65px;
@@ -45,6 +46,7 @@
     border: 4px solid #6059ba;
     border-radius: 20px;
 }
+
 .NavLogoText {
     color: white;
     margin-left: 10px;
@@ -70,7 +72,7 @@
 .NavText {
     font-size: larger;
     color: white;
-    font-weight: 600; 
+    font-weight: 600;
     cursor: pointer;
 }
 
@@ -104,6 +106,7 @@
 .Heroh1 {
    font-size: 150px;color: #6059ba;
 }
+
 .Heroh2 {
     margin-top: 20px;
     font-size: larger;
@@ -112,7 +115,7 @@
 .UsersCard {
     margin: 60px auto;
     width: 450px;
-    height: 200px; 
+    height: 200px;
     background-color: white;
     justify-content: space-evenly;
     display: flex;
@@ -135,7 +138,6 @@
 .usersArrow:active{
     scale: 1.1;
 }
-
 
 /* Users.tsx */
 
@@ -170,7 +172,62 @@
     scale: 1.1;
 }
 
+/* userpage.tsx */
 
-.style {
+.PostDiv {
+    margin: 60px auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.UserPost{
+    margin: 40px;
+    padding: 20px;
+    border: 8px solid white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
     color: white;
+    font-size: 20px;
+}
+
+.UserPost:hover {
+    scale:1.1;
+    border: 8px solid #6059ba;
+}
+
+.UserPost h5{
+    color: #6059ba;
+    margin-bottom: 10px;
+}
+
+/* PostPage.tsx */
+
+.title {
+    color:white;
+    margin: 60px;
+    text-decoration: 4px solid white underline;
+}
+
+.body {
+    color: white;
+    margin: 80px;
+}
+
+.mainPost {
+    border: 5px solid #6059ba;
+    margin: 20px;
+}
+.mainPost:hover{
+    border: 5px solid white;
+    .title {
+        text-decoration: 4px solid #6059ba underline;
+    }
+    .body {
+        color: #6059ba;
+    }
 }
