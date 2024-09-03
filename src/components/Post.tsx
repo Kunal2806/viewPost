@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
+
 export interface Props {
-  userId: number;
   id: number;
   title: string;
-  body: string;
   customOnClick: any;
-  href: string;
+  href: any;
 }
 
 function Post(props: Props) {

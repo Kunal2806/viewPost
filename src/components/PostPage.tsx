@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
+import Post from "./Post";
 import { useParams } from "react-router-dom";
-import Data from "./Data/data.json";
 
 interface post {
   userId: number;
@@ -7,38 +8,56 @@ interface post {
   title: string;
   body: string;
 }
-function userpage() {
-  const { id } = useParams();
+
+function PostPage() {
+  const [User, setUser]: any[] = useState([]);
+
+  const { userId } = useParams();
   let posts: post[] = [];
 
-  Data.map((dataObj) => {
-    if (dataObj.id.toString() === id) {
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => {
+        if (!res.ok) {
+          return Error("data fetch error");
+        }
+
+        return res.json();
+      })
+      .then((data) => setUser(data));
+  }, []);
+
+  User.map((dataObj: post) => {
+    if (dataObj.userId.toString() === userId) {
       posts = [...posts, dataObj];
     }
   });
+
+  function userOnClick(e: any) {
+    e.target;
+  }
+
+  function createHrefLink(id: number) {
+    return `/user/${userId}/post/${id}`;
+  }
+
   return (
     <>
-      {posts.map((post) => (
-        <div>
-          <div className="HeroTitle">
-            <div className="Heroh1">user</div>
-            <div className="Heroh2">
-              <h1>Id - {post.userId} </h1>
-              <h1>Post - {id}</h1>
-            </div>
-          </div>
-          <div className="mainPost">
-            <div className="title">
-              <h1> {post.title}</h1>
-            </div>
-            <div className="body">
-              <h3>{post.body}</h3>
-            </div>
-          </div>
+      {
+        <div className="UsersDiv">
+          {posts.map((post, index) => (
+            <Post
+              key={index}
+              id={post.id}
+              title={post.title}
+              customOnClick={userOnClick}
+              href={createHrefLink(post.id)}
+            />
+          ))}
         </div>
-      ))}
+      }
     </>
   );
 }
 
-export default userpage;
+export default PostPage;

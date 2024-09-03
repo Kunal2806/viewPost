@@ -1,14 +1,24 @@
-import Users from "./Users";
-import Data from "./Data/data.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import UsersCard from "./UsersCard";
 
-function Hero() {
+function DisplayUSer() {
+  const [User, setUser]: any[] = useState([]);
   const [Arrow, setArrow] = useState(false);
 
-  const dataArray = Data;
-  let userIdArray = dataArray.map((data) => data.userId);
-  let set = new Set(userIdArray);
-  const idArray = [...set];
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => {
+        if (!res.ok) {
+          return Error("data fetch error");
+        }
+
+        return res.json();
+      })
+      .then((data) => setUser(data));
+  }, []);
+  const userIdArray = User.map((user: any) => user.userId);
+  const userIdSet = new Set(userIdArray);
+  const userIdArrayDist = [...userIdSet];
 
   function userOnClick(e: any) {
     e.target;
@@ -27,6 +37,7 @@ function Hero() {
           <h1>user</h1>
         </div>
       </div>
+
       <div className="UsersCard">
         <img className="usersImg" src="./image/users.jpg" />
         <img
@@ -35,10 +46,11 @@ function Hero() {
           onClick={() => setArrow((pre) => !pre)}
         />
       </div>
+
       {Arrow && (
         <div className="UsersDiv">
-          {idArray.map((id) => (
-            <Users
+          {userIdArrayDist.map((id: any) => (
+            <UsersCard
               key={id}
               user_id={id}
               customOnClick={userOnClick}
@@ -51,4 +63,4 @@ function Hero() {
   );
 }
 
-export default Hero;
+export default DisplayUSer;

@@ -5,7 +5,7 @@ export interface Props {
   customOnClick: any;
   href: string;
 }
-function Users(props: Props) {
+function UsersCard(props: Props) {
   return (
     <Link className="user" onClick={props.customOnClick} to={props.href}>
       <img src="./image/user.jpg" />
@@ -14,4 +14,4 @@ function Users(props: Props) {
   );
 }
 
-export default Users;
+export default UsersCard;
