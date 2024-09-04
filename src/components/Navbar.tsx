@@ -3,7 +3,7 @@ function Navbar() {
     <>
       <div className="NavBox">
         <div className="NavLogo">
-          <img className="NavLogoImg" src="/public/image/Logo.png" />
+          <img className="NavLogoImg" src="./image/Logo.png" />
           <div className="NavLogoText">View Post</div>
         </div>
         <div className="NavRegister">
